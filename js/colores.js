@@ -22,7 +22,7 @@ const scoreEl = document.querySelector("#score-number");
 let score = 0;
 
 function updateOptions() {
-    scoreEl.textContent=score;
+    scoreEl.textContent = score;
     scoreEl.style.color = getRandomScoreColor();
     let randomIndex = Math.floor(Math.random() * colors.length);
     let color = colors[randomIndex];
@@ -51,7 +51,7 @@ function handleOptionClick(event) {
 
     const target = event.target;
     const optionText = target.textContent;
-    
+
     if (optionText == correctOption) {
         document.getElementById("congrats").textContent = "CORRECTO :)"
         document.getElementById("congrats").style.color = "limegreen";
@@ -61,19 +61,19 @@ function handleOptionClick(event) {
     } else {
         document.getElementById("congrats").textContent = "INCORRECTO :("
         document.getElementById("congrats").style.color = "crimson";
-        score=0;
+        score = 0;
         showCongratulations();
     }
 
 
 }
 
-function handleTextToSpeechClick(event){
+function handleTextToSpeechClick(event) {
     const target = event.target;
     const text = document.getElementById(target.id).previousElementSibling.textContent;
     speechSynthesis.cancel();
     speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-    
+
 }
 
 option1El.addEventListener("click", handleOptionClick);

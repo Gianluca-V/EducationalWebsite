@@ -55,11 +55,11 @@ const scoreEl = document.querySelector("#score-number");
 let score = 0;
 let options;
 function updateOptions() {
-    scoreEl.textContent=score;
+    scoreEl.textContent = score;
     scoreEl.style.color = getRandomScoreColor();
 
     const letter = alphabet[Math.floor(Math.random() * 26)].toUpperCase();
-    while(letter == prevLetter){letter = alphabet[Math.floor(Math.random() * 26)].toUpperCase();}
+    while (letter == prevLetter) { letter = alphabet[Math.floor(Math.random() * 26)].toUpperCase(); }
     prevLetter = letter;
     letterToGuessEl.textContent = letter.toUpperCase();
     letterToGuessEl.style.color = getRandomColor();
@@ -81,8 +81,8 @@ function updateOptions() {
 
 function handleOptionClick(event) {
     const target = event.target;
-    const answers = [option1El,option2El,option3El];
-    
+    const answers = [option1El, option2El, option3El];
+
     if (target == answers[correctAnsEl]) {
         document.getElementById("congrats").textContent = "CORRECTO :)"
         document.getElementById("congrats").style.color = "limegreen";
@@ -92,32 +92,32 @@ function handleOptionClick(event) {
     } else {
         document.getElementById("congrats").textContent = "INCORRECTO :("
         document.getElementById("congrats").style.color = "crimson";
-        score=0;
+        score = 0;
         showCongratulations();
     }
 
 
 }
 
-function handleTextToSpeechClick(event){
+function handleTextToSpeechClick(event) {
     speechSynthesis.cancel();
     let speech = new SpeechSynthesisUtterance();
     speech.lang = "es-Es";
 
-    if(event.target == document.getElementById("tts-letter")){
-        if(letterToGuessEl.textContent == 'W') speech.text ="Doble B!";
-        else if (letterToGuessEl.textContent == 'W') speech.text ="Y Griega!";
-        else if (letterToGuessEl.textContent == 'V') speech.text ="B Corta!";
-        else if (letterToGuessEl.textContent == 'B') speech.text ="VE!";
-        else if (letterToGuessEl.textContent == 'C') speech.text ="SE!";
-        else speech.text = letterToGuessEl.textContent+"!";
+    if (event.target == document.getElementById("tts-letter")) {
+        if (letterToGuessEl.textContent == 'W') speech.text = "Doble B!";
+        else if (letterToGuessEl.textContent == 'W') speech.text = "Y Griega!";
+        else if (letterToGuessEl.textContent == 'V') speech.text = "B Corta!";
+        else if (letterToGuessEl.textContent == 'B') speech.text = "VE!";
+        else if (letterToGuessEl.textContent == 'C') speech.text = "SE!";
+        else speech.text = letterToGuessEl.textContent + "!";
     }
-    else{
-        if(event.target == document.getElementById("tts-1")) speech.text =options[0]+"!";
-        if(event.target == document.getElementById("tts-2")) speech.text =options[1]+"!";
-        if(event.target == document.getElementById("tts-3")) speech.text =options[2]+"!";
+    else {
+        if (event.target == document.getElementById("tts-1")) speech.text = options[0] + "!";
+        if (event.target == document.getElementById("tts-2")) speech.text = options[1] + "!";
+        if (event.target == document.getElementById("tts-3")) speech.text = options[2] + "!";
     }
-    if(speech.text == "Arbol!") speech.text = "Árbol!"
+    if (speech.text == "Arbol!") speech.text = "Árbol!"
     speechSynthesis.speak(speech);
 }
 
@@ -130,7 +130,7 @@ document.getElementById("tts-2").addEventListener("click", handleTextToSpeechCli
 document.getElementById("tts-3").addEventListener("click", handleTextToSpeechClick);
 
 function showCongratulations() {
-    
+
     document.getElementById("congrats").style.display = "block";
     document.getElementById("congrats-bg").style.display = "block";
 
